@@ -1,6 +1,4 @@
 # README
 
-This is the shopping cart application everyone talks about in the office.
-
-Found in Agile Development with Rails (From Safari - Oreilly Books) at Chapter 5 under the title The Depot Application.
+This is the shopping cart application everyone in the office talks about from Oreilly (Safari) books in the Agile Development with Rails book Chapter 5 called: The Depot Application.
 
