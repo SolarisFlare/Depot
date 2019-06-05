@@ -1,3 +1,11 @@
+#---
+# Excerpted from "Agile Web Development with Rails 5.1",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material,
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/rails51 for more book information.
+#---
 class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
@@ -34,11 +42,14 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to store_index_url, notice: 'Thank you for your order.' }
-        format.json { render :show, status: :created, location: @order }
+        format.html { redirect_to store_index_url, notice: 
+          'Thank you for your order.' }
+        format.json { render :show, status: :created,
+          location: @order }
       else
         format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -68,12 +79,6 @@ class OrdersController < ApplicationController
   end
 
   private
-    def ensure_cart_isnt_empty
-        if @cart.line_items.empty?
-            redirect_to store_index_url, notice: 'Your cart is empty'
-        end
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
@@ -83,4 +88,12 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:name, :address, :email, :pay_type)
     end
+  #...
+
+  private
+     def ensure_cart_isnt_empty
+       if @cart.line_items.empty?
+         redirect_to store_index_url, notice: 'Your cart is empty'
+       end
+     end
 end
